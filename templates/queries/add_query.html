@@ -1,0 +1,8 @@
+<form method="POST">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+
+{% for query in queries %}
+<p><a href="{{ query.akfg_url }}" target="ext">{{ query }}</a></p>
+{% endfor %}

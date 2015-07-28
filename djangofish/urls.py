@@ -16,6 +16,17 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from rest_framework import routers
+from queries.views import FishQueryViewSet
+
+
+api_router = routers.DefaultRouter()
+api_router.register(r'queries',FishQueryViewSet)
+
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^queries/', include('queries.urls')),
+    # Include REST API routes
+    url(r'^api/v1/', include(api_router.urls)),
 ]
