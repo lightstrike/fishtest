@@ -25,3 +25,4 @@ class FishQueryViewSet(viewsets.ModelViewSet):
     """
     queryset = FishQuery.objects.all()
     serializer_class = FishQuerySerializer
+    filter_fields = ('location', 'species', 'year',)

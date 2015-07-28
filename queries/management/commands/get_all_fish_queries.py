@@ -4,6 +4,11 @@ from lxml import etree
 from django.core.management.base import BaseCommand
 from queries.models import FishQuery
 
+# Disabling warnings related to ADFG's SSL cert
+# See https://github.com/shazow/urllib3/issues/497
+import requests.packages.urllib3
+requests.packages.urllib3.disable_warnings()
+
 
 FISH_URL_BASE = 'https://www.adfg.alaska.gov/sf/FishCounts/index.cfm?ADFG='
 FISH_COUNT_URL = FISH_URL_BASE + 'main.displayResults'
@@ -42,8 +47,8 @@ class Command(BaseCommand):
                 fish_query = {
                     'location': location,
                     'location_id': location_id,
-                    'fish_id': fish_id,
-                    'fish_name': fish_name,
+                    'species_id': fish_id,
+                    'species': fish_name,
                     'year': year[0],
                     }
                 location_queries.append(fish_query)
